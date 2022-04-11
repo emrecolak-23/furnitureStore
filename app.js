@@ -32,6 +32,7 @@ app.set('view engine', 'ejs');
 
 // Middlewares
 app.use(express.static('public')); // use Public folder as a static
+app.use(express.static('uploads')); // use uploads folder a static
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 // Routes
