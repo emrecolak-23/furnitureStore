@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 
 // Import Routes
 const PageRouter = require('./routes/PageRoutes');
+const FurnitureRouter = require('./routes/FurnitureRoutes');
 
 // Create express app
 const app = express();
@@ -33,6 +34,7 @@ app.use(express.static('public')); // use Public folder as a static
 
 // Routes
 app.use('/', PageRouter);
+app.use('/furniture', FurnitureRouter);
 
 // Declare Port Number
 const PORT = process.env.PORT || 17000;
