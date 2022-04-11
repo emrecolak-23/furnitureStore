@@ -27,4 +27,7 @@ router.route('/').post(upload,FurnitureController.createFurniture);
 // Get All Furnitures
 router.route('/').get(FurnitureController.getAllFurniture);
 
+// Get Furniture by category
+router.route('/:categorySlug').get(FurnitureController.getFurnitureByCategory);
+
 module.exports = router

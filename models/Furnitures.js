@@ -18,6 +18,10 @@ const FurnitureSchema = new Schema({
   image: {
     type: String
   },
+  category: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Category'
+  },
   slug: {
     type: String,
     unique: true

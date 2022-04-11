@@ -1,3 +1,5 @@
+const Category = require("../models/Category");
+
 exports.getHomePage = (req, res) => {
   try {
     res.status(200).render('index', {
@@ -11,10 +13,12 @@ exports.getHomePage = (req, res) => {
   }
 }
 
-exports.getFurniturePage = (req, res) => {
+exports.getFurniturePage = async (req, res) => {
   try {
+    const categories = await Category.find().limit(3)
     res.status(200).render('furnitures', {
-      page_name: 'furnitures'
+      page_name: 'furnitures',
+      categories
     });
   } catch(error) {
     res.status(400).json({

@@ -13,27 +13,17 @@
             </div>
             <div class="furnitures_section_2">
                <div class="row">
+                  <% if (categories) { %> 
+                     <% for (let i =0; i<categories.length;i++) { %> 
                   <div class="col-md-4">
                      <div class="hover01 column">
-                        <figure><img src="images/img-1.png"></figure>
+                        <figure><img src="/category/<%= categories[i].image  %>"></figure>
                      </div>
-                     <h3 class="introduction_text">Bedroom</h3>
-                     <div class="seemore_bt"><a href="#">See More</a></div>
+                     <h3 class="introduction_text"><%= categories[i].name  %></h3>
+                     <div class="seemore_bt"><a href="/furniture/<%= categories[i].slug  %>">See More</a></div>
                   </div>
-                  <div class="col-md-4">
-                     <div class="hover01 column">
-                        <figure><img src="images/img-2.png"></figure>
-                     </div>
-                     <h3 class="introduction_text">Office</h3>
-                     <div class="seemore_bt active"><a href="#">See More</a></div>
-                  </div>
-                  <div class="col-md-4">
-                     <div class="hover01 column">
-                        <figure><img src="images/img-3.png"></figure>
-                     </div>
-                     <h3 class="introduction_text">Bathroom</h3>
-                     <div class="seemore_bt"><a href="#">See More</a></div>
-                  </div>
+                     <% } %> 
+                  <% } %> 
                </div>
             </div>
          </div>
