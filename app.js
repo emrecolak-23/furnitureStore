@@ -31,7 +31,8 @@ app.set('view engine', 'ejs');
 
 // Middlewares
 app.use(express.static('public')); // use Public folder as a static
-
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 // Routes
 app.use('/', PageRouter);
 app.use('/furniture', FurnitureRouter);

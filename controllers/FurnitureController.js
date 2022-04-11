@@ -10,7 +10,22 @@ exports.createFurniture = async (req, res) => {
     });
   } catch(error) {
     res.status(400).json({
-      status: 'Furniture not created',
+      status: 'Something went wrong',
+      error
+    });
+  }
+}
+
+exports.getAllFurniture = async (req, res) => {
+  try {
+    const furnitures = await Furniture.find().sort('-createdAt');
+    res.status(200).json({
+      status: 'Get all furnitures',
+      furnitures
+    })
+  } catch(error) {
+    res.status(400).json({
+      status: 'Something went wrong',
       error
     });
   }
