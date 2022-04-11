@@ -2,6 +2,9 @@
 const express = require('express');
 const ejs = require('ejs');
 
+// Import Routes
+const PageRouter = require('./routes/PageRoutes');
+
 // Create express app
 const app = express();
 
@@ -11,10 +14,8 @@ app.set('view engine', 'ejs');
 // Middlewares
 app.use(express.static('public')); // use Public folder as a static
 
-// Server Created
-app.get('/', (req, res)=>{
-  res.render('index')
-});
+// Routes
+app.use('/', PageRouter);
 
 // Declare Port Number
 const PORT = process.env.PORT || 17000;
