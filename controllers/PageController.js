@@ -67,3 +67,27 @@ exports.getAboutPage = (req, res) => {
     });
   }
 }
+
+exports.getLoginPage = (req, res) => {
+  try{
+    res.status(200).render('login', {
+      page_name: 'login'
+    });
+  } catch(error) {
+    res.status(400).json({
+      status: 'Login page not loaded'
+    });
+  }
+}
+
+exports.getRegisterPage = (req, res) => {
+  try {
+    res.status(200).render('register', {
+      page_name:'register'
+    });
+  } catch(error) {
+    res.status(400).json({
+      status: 'Register page not loaded'
+    });
+  }
+}

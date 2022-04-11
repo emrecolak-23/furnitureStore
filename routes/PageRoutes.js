@@ -22,4 +22,10 @@ router.route('/blog').get(PageController.getBlogPage);
 // About Page
 router.route('/about').get(PageController.getAboutPage);
 
+// Login Page 
+router.route('/login').get(PageController.getLoginPage);
+
+// Register Page
+router.route('/register').get(PageController.getRegisterPage);
+
 module.exports = router;

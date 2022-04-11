@@ -39,8 +39,13 @@ exports.getAllFurniture = async (req, res) => {
 
 exports.getFurnitureByCategory = async (req, res) => {
   try {
-    const category = await Category.findOne({slug: req.params.categorySlug});
-    const furnitures = await Furniture.find({category:category._id});
+    let filter = {};
+    const categorySlug = req.params.categorySlug
+    const category = await Category.findOne({slug: categorySlug});
+    if (categorySlug) {
+      filter = {category: category._id}
+    }
+    const furnitures = await Furniture.find(filter);
     res.status(200).json({
       status: 'Furnitures listed by category',
       furnitures
