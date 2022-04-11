@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 // Import Routes
 const PageRouter = require('./routes/PageRoutes');
 const FurnitureRouter = require('./routes/FurnitureRoutes');
+const CategoryRouter = require('./routes/CategoryRoutes');
 
 // Create express app
 const app = express();
@@ -36,6 +37,8 @@ app.use(express.urlencoded({extended: true}));
 // Routes
 app.use('/', PageRouter);
 app.use('/furniture', FurnitureRouter);
+app.use('/category', CategoryRouter);
+
 
 // Declare Port Number
 const PORT = process.env.PORT || 17000;
