@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 const PageRouter = require('./routes/PageRoutes');
 const FurnitureRouter = require('./routes/FurnitureRoutes');
 const CategoryRouter = require('./routes/CategoryRoutes');
+const UserRouter = require('./routes/AuthRoutes');
 
 // Create express app
 const app = express();
@@ -39,7 +40,7 @@ app.use(express.urlencoded({extended: true}));
 app.use('/', PageRouter);
 app.use('/furniture', FurnitureRouter);
 app.use('/category', CategoryRouter);
-
+app.use('/user', UserRouter);
 
 // Declare Port Number
 const PORT = process.env.PORT || 17000;
