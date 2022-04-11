@@ -1,12 +1,19 @@
 // Import Packages
 const express = require('express');
+const ejs = require('ejs');
 
 // Create express app
 const app = express();
 
+// Template Engine
+app.set('view engine', 'ejs');
+
+// Middlewares
+app.use(express.static('public')); // use Public folder as a static
+
 // Server Created
 app.get('/', (req, res)=>{
-  res.send('Emre Çolak');
+  res.render('index')
 });
 
 // Declare Port Number
