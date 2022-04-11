@@ -38,12 +38,12 @@
      </nav>
      <div class="custome_menu">
         <ul>
-           <li class="active"><a href="/">Home</a></li>
-           <li><a href="/about">About</a></li>
-           <li><a href="/furnitures">Furnitures</a></li>
-           <li><a href="/blog">Blog</a></li>
+           <li class="<%= page_name=='index' && 'active' %>"><a href="/">Home</a></li>
+           <li class="<%= page_name=='about' && 'active'  %>"><a href="/about">About</a></li>
+           <li class="<%= page_name=='furnitures' && 'active'  %>"><a href="/furnitures">Furnitures</a></li>
+           <li class="<%= page_name=='blog' && 'active'  %>"><a href="/blog">Blog</a></li>
            <li><a href="testimonial.html">Testimonial</a></li>
-           <li><a href="/contact">Contact Us</a></li>
+           <li class="<%= page_name=='contact' && 'active'  %>"><a href="/contact">Contact Us</a></li>
            <li><a href="#">Login</a></li>
            <li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
         </ul>
