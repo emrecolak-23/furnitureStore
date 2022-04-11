@@ -4,6 +4,7 @@
   "description": "furniture web app",
   "main": "app.js",
   "scripts": {
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/emrecolak-23/furnitureStore/issues"
   },
-  "homepage": "https://github.com/emrecolak-23/furnitureStore#readme"
+  "homepage": "https://github.com/emrecolak-23/furnitureStore#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
 }
