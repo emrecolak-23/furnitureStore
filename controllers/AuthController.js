@@ -2,6 +2,7 @@
 const bcrypt = require('bcrypt');
 // Import Models
 const User = require('../models/User');
+const Category = require('../models/Category');
 
 exports.register = async (req, res) => {
   try {
@@ -52,9 +53,11 @@ exports.logout = (req, res) => {
 exports.getDashboardPage = async (req, res) => {
   try {
     const user = await User.findOne({_id: req.session.userID});
+    const categories = await Category.find();
     res.status(200).render('dashboard', {
       page_name: 'dashboard',
-      user
+      user,
+      categories
     })
   } catch(error) {
     res.status(400).redirect('/login');

@@ -10,10 +10,7 @@ exports.createFurniture = async (req, res) => {
       image: req.file.filename,
       category: req.body.category
     });
-    res.status(201).json({
-      status: 'Furniture created',
-      furniture
-    });
+    res.status(201).redirect('/user/dashboard')
   } catch(error) {
     res.status(400).json({
       status: 'Something went wrong',

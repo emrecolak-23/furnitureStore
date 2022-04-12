@@ -2,6 +2,106 @@
 
 <%- include('partials/_navigation')  %> 
 
+<% if (user.role =='seller') { %> 
+<div class="about_section layout_padding">
+  <div class="container">
+     <div class="row">
+        <div class="col-md-12">
+           <h1 class="about_taital"><%= user.name  %></h1>
+          <p class="about_text text-uppercase"><b>(<%= user.role  %>)</b></p>
+        </div>
+     </div>
+     <div class="about_section_2 layout_padding">
+      <div class="row">
+         <div class="col-md-12 text-center">
+          <button
+            type="button"
+            class="btn btn-success mb-3"
+            data-toggle="modal"
+            data-target="#addFurniture"
+          >
+            Create New Furniture
+          </button>
+        </div>
+      </div>
+     </div>
+  </div>
+</div>
 
-
+<!-- Add Furniture Modal Start -->
+<div
+            class="modal fade"
+            id="addFurniture"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="myModalLabel"
+          >
+            <div
+              class="modal-dialog modal-dialog-centered modal-lg"
+              role="document"
+            >
+              <div class="modal-content">
+                <div class="modal-body customer-box">
+                  <!-- Tab Panes -->
+                  <div class="tab-content">
+                    <div class="tab-pane active" id="Login">
+                      <form
+                        method="post"
+                        action="/furniture"
+                        class="tm-contact-form"
+                        enctype="multipart/form-data"
+                      >
+                        <div class="form-group mb-3">
+                          <input
+                            type="text"
+                            name="name"
+                            class="mail_text"
+                            placeholder="Furniture Name"
+                            required
+                          />
+                        </div>
+                        <div class="form-group">
+                          <select name="category" class="mail_text">
+                            <option value="" disabled selected>Select category</option>    
+                            <% for(let i = 0; i<categories.length; i++) { %> 
+                            <option value="<%= categories[i]._id %>"><%= categories[i].name %> </option>
+                            <% } %> 
+                            </select>
+                        </div>
+                        <div class="form-group">
+                          <input type="hidden" name="role" class="form-control"  value="<%= user.role %>">
+                        </div>
+                        <div class="form-group mb-5">
+                          <textarea
+                            rows="8"
+                            name="description"
+                            class="mail_text rounded-0"
+                            placeholder="Furniture Description"
+                            required
+                          ></textarea>
+                        </div>
+                        <div class="form-group mb-3">
+                          <input
+                            type="file"
+                            name="image"
+                            class="form-control-file rounded-0"
+                          />
+                        </div>
+                        <div class="form-group mb-0">
+                          <button
+                            type="submit"
+                            class="btn btn-success rounded-5 d-block ml-auto mr-0 tm-btn-animate tm-btn-submit tm-icon-submit"
+                          >
+                            <span>Add</span>
+                          </button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<!-- Add Furniture Modal End-->
+<% } %> 
 <%- include('partials/_footer')  %> 
