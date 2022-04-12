@@ -4,6 +4,9 @@ const express = require('express');
 // Import Controllers
 const AuthController = require('../controllers/AuthController');
 
+// Import Middlewares
+const AuthMiddleware = require('../middlewares/authMiddleware');
+
 // Create express router
 const router = express.Router();
 
@@ -14,6 +17,6 @@ router.route('/login').post(AuthController.login);
 // Logout Process
 router.route('/logout').get(AuthController.logout);
 // Dashboard Page Process
-router.route('/dashboard').get(AuthController.getDashboardPage);
+router.route('/dashboard').get(AuthMiddleware,AuthController.getDashboardPage);
 
 module.exports = router

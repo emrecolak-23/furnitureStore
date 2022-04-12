@@ -7,6 +7,9 @@ const router = express.Router();
 // Import Controllers
 const PageController = require('../controllers/PageController');
 
+// Import Middleware
+const RedirectMiddleware = require('../middlewares/redirectMiddleware');
+
 // Home Page
 router.route('/').get(PageController.getHomePage);
 
@@ -23,9 +26,9 @@ router.route('/blog').get(PageController.getBlogPage);
 router.route('/about').get(PageController.getAboutPage);
 
 // Login Page 
-router.route('/login').get(PageController.getLoginPage);
+router.route('/login').get(RedirectMiddleware,PageController.getLoginPage);
 
 // Register Page
-router.route('/register').get(PageController.getRegisterPage);
+router.route('/register').get(RedirectMiddleware,PageController.getRegisterPage);
 
 module.exports = router;
