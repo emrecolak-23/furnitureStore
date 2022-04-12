@@ -4,6 +4,7 @@ const ejs = require('ejs');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
+const methodOverride = require('method-override');
 // Import Routes
 const PageRouter = require('./routes/PageRoutes');
 const FurnitureRouter = require('./routes/FurnitureRoutes');
@@ -51,6 +52,9 @@ app.use('*', (req, res, next)=>{
   userIN = req.session.userID;
   next();
 });
+app.use(methodOverride('_method', {
+  methods: ['GET','POST']
+}))
 // Routes
 app.use('/', PageRouter);
 app.use('/furniture', FurnitureRouter);

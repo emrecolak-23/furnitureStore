@@ -31,7 +31,7 @@
                  <div class="blog_img"><img src="/<%= furnitures[i].image %>"></div>
                  <p class="chair_text"><a href="/furniture/single/<%= furnitures[i].slug  %>"><%= furnitures[i].name  %></a></p>
                  <div class="clearfix">
-                   <a class="float-left text-white btn btn-danger btn-sm">DELETE</a>
+                   <a href="/furniture/<%= furnitures[i]._id %>?_method=DELETE" class="float-left text-white btn btn-danger btn-sm">DELETE</a>
                    <a class="float-right text-white btn btn-warning btn-sm">UPDATE</a>
                  </div>
                </div>

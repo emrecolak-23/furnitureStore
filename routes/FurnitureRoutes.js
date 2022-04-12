@@ -33,4 +33,7 @@ router.route('/:categorySlug').get(FurnitureController.getFurnitureByCategory);
 // Get One Furniture
 router.route('/single/:furnitureSlug').get(FurnitureController.getOneFurniture);
 
+// Delete Furniture
+router.route('/:id').delete(FurnitureController.deleteFurniture);
+
 module.exports = router
