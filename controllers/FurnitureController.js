@@ -3,13 +3,11 @@ const Furniture = require('../models/Furnitures');
 const Category = require('../models/Category');
 
 exports.createFurniture = async (req, res) => {
+    const furniture = req.body;
+    const imageName = req.file.filename
+    furniture.image = imageName
   try {
-    const furniture = await Furniture.create({
-      name: req.body.name,
-      description: req.body.description,
-      image: req.file.filename,
-      category: req.body.category
-    });
+    await Furniture.create(furniture);
     res.status(201).redirect('/user/dashboard')
   } catch(error) {
     res.status(400).json({

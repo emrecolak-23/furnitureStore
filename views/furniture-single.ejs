@@ -15,8 +15,13 @@
               <div class="about_img"><img src="/<%= furniture.image  %>"></div>
            </div>
            <div class="col-md-6">
-              <div class="good_text">Category: <span><%= furniture.category.name  %></span> </div>
-              <p class="making_text"><%= furniture.description  %></p>
+              <div class="good_text">
+               Price: <span><%= furniture.price  %>$</span>  
+             </div>
+             <p class="mb-2">
+               <b>Category:</b><span> <%= furniture.category.name  %> </span>
+            </p>
+            <p class="making_text"><%= furniture.description  %></p>
               <div class="read_bt"><a href="#">Reserve</a></div>
            </div>
         </div>

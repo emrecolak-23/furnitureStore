@@ -26,6 +26,11 @@ const FurnitureSchema = new Schema({
     type: String,
     unique: true
   },
+  price: {
+    type: Number,
+    get: v => (v/100).toFixed(2),
+    set: v => v*100
+  },
   createdAt: {
     type: Date,
     default: Date.now
