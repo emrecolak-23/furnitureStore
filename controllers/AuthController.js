@@ -1,3 +1,5 @@
+// Import Package
+const bcrypt = require('bcrypt');
 // Import Models
 const User = require('../models/User');
 
@@ -12,3 +14,23 @@ exports.register = async (req, res) => {
     });
   }
 };
+
+exports.login = async (req, res) => {
+  try {
+    const {email, password} = req.body;
+    const user = await User.findOne({email});
+    if (user) {
+      bcrypt.compare(password, user.password, (err, same)=>{
+        if (err) throw err
+        if (same) {
+          res.status(200).send('You are logged in');
+        }
+      })
+    }
+  } catch(error) {
+    res.status(400).json({
+      status: 'Something went wrong',
+      error
+    })
+  }
+}
