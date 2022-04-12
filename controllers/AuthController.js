@@ -24,7 +24,7 @@ exports.login = async (req, res) => {
         if (err) throw err
         if (same) {
           req.session.userID = user._id;
-          res.status(200).redirect('/');
+          res.status(200).redirect('/user/dashboard');
         }
       })
     }
@@ -46,5 +46,17 @@ exports.logout = (req, res) => {
       status: 'Your session not ended',
       error
     })
+  }
+}
+
+exports.getDashboardPage = async (req, res) => {
+  try {
+    const user = await User.findOne({_id: req.session.userID});
+    res.status(200).render('dashboard', {
+      page_name: 'dashboard',
+      user
+    })
+  } catch(error) {
+    res.status(400).redirect('/login');
   }
 }

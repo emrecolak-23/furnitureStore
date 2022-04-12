@@ -27,12 +27,17 @@
                   <a class="nav-link" href="/register">Register</a>
                </li>
                <% } %> 
+               <% if (userIN) { %>
+                  <li class="nav-item">
+                     <a onclick="return confirm('Are you sure for logout')" class="nav-link" href="/user/logout">Logout</a>
+                  </li>
+               <% } %>  
            </ul>
            <form class="form-inline my-2 my-lg-0">
               <div class="call_text">
                  <ul>
-                    <li><a href="#"><i class="fa fa-phone" aria-hidden="true"></i><span class="padding_left_15">Call : +01 1234567890</span></a></li>
-                    <li><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i><span class="padding_left_15">Loram ipusm</span></a></li>
+                    <li><a href="#"><i class="fa fa-phone" aria-hidden="true"></i><span class="padding_left_15">Call : +90 505 997 9161</span></a></li>
+                    <li><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i><span class="padding_left_15">Trabzon / TURKEY</span></a></li>
                  </ul>
               </div>
            </form>
@@ -49,6 +54,7 @@
            <li class="<%= page_name=='register' && 'active' %>"><a href="/register">Register</a></li>
            <% } %>
            <% if (userIN) { %>
+            <li class="<%= page_name=='dashboard' && 'active' %>"><a href="/user/dashboard">Dashboard</a></li>
             <li><a onclick="return confirm('Are you sure for logout?')" href="/user/logout">Logout</a></li>
            <% } %> 
            <li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>

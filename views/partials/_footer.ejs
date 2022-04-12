@@ -3,20 +3,18 @@
         <div class="container">
            <div class="footer_menu">
               <ul>
-                 <li class="active"><a href="index.html">HOME</a></li>
-                 <li><a href="about.html">About</a></li>
-                 <li><a href="furnitures.html">Furnitures</a></li>
-                 <li><a href="blog.html">Blog</a></li>
-                 <li><a href="testimonial.html">Testimonial</a></li>
-                 <li><a href="contact.html">contact Us</a></li>
+                 <li class="<%= page_name=='index' && 'active' %>"><a href="index.html">HOME</a></li>
+                 <li class="<%= page_name=='about' && 'active' %>"><a href="/about">About</a></li>
+                 <li class="<%= page_name=='furnitures' && 'active' %>"><a href="/furnitures">Furnitures</a></li>
+                 <li class="<%= page_name=='contact' && 'active' %>"><a href="/contact">contact</a></li>
               </ul>
            </div>
            <div class="social_icon">
               <ul>
-                 <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                 <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                 <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-                 <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                 <li><a href="https://www.facebook.com/ecolak61/"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                 <li><a href="https://twitter.com/colakkemreee"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                 <li><a href="https://www.linkedin.com/in/emre-colak/"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                 <li><a href="https://www.instagram.com/colakkemree/"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
               </ul>
            </div>
         </div>

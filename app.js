@@ -3,6 +3,7 @@ const express = require('express');
 const ejs = require('ejs');
 const mongoose = require('mongoose');
 const session = require('express-session');
+const MongoStore = require('connect-mongo');
 // Import Routes
 const PageRouter = require('./routes/PageRoutes');
 const FurnitureRouter = require('./routes/FurnitureRoutes');
@@ -43,6 +44,7 @@ app.use(
     secret: 'my_secret_value',
     resave: false,
     saveUninitialized: true,
+    store: MongoStore.create({mongoUrl: dbURI})
   })
 );
 app.use('*', (req, res, next)=>{
