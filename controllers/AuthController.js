@@ -23,13 +23,27 @@ exports.login = async (req, res) => {
       bcrypt.compare(password, user.password, (err, same)=>{
         if (err) throw err
         if (same) {
-          res.status(200).send('You are logged in');
+          req.session.userID = user._id;
+          res.status(200).redirect('/');
         }
       })
     }
   } catch(error) {
     res.status(400).json({
       status: 'Something went wrong',
+      error
+    })
+  }
+}
+
+exports.logout = (req, res) => {
+  try {
+    req.session.destroy(()=>{
+      res.redirect('/')
+    })
+  } catch(error) {
+    res.status(400).json({
+      status: 'Your session not ended',
       error
     })
   }

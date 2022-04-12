@@ -7,18 +7,26 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
            <ul class="navbar-nav ml-auto">
-              <li class="nav-item active">
+              <li class="nav-item <%= page_name=='index' && 'active' %>">
                  <a class="nav-link" href="/">Home</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item <%= page_name=='about' && 'active'  %>">
                  <a class="nav-link" href="/about">About</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item <%= page_name=='furnitures' && 'active' %>">
                  <a class="nav-link" href="/furnitures">Furnitures</a>
               </li>
-              <li class="nav-item">
-                 <a class="nav-link" href="/contact">Contact Us</a>
+              <li class="nav-item <%= page_name=='contact' && 'active'  %>">
+                 <a class="nav-link" href="/contact">Contact</a>
               </li>
+              <% if (!userIN) { %> 
+              <li class="nav-item <%= page_name=='login' && 'active'  %>">
+                  <a class="nav-link" href="/login">Login</a>
+               </li>
+               <li class="nav-item <%= page_name=='register' && 'active'  %>">
+                  <a class="nav-link" href="/register">Register</a>
+               </li>
+               <% } %> 
            </ul>
            <form class="form-inline my-2 my-lg-0">
               <div class="call_text">
@@ -36,8 +44,13 @@
            <li class="<%= page_name=='about' && 'active'  %>"><a href="/about">About</a></li>
            <li class="<%= page_name=='furnitures' && 'active'  %>"><a href="/furnitures">Furnitures</a></li>
            <li class="<%= page_name=='contact' && 'active'  %>"><a href="/contact">Contact Us</a></li>
+           <% if (!userIN) { %> 
            <li class="<%= page_name=='login' && 'active' %>"><a href="/login">Login</a></li>
            <li class="<%= page_name=='register' && 'active' %>"><a href="/register">Register</a></li>
+           <% } %>
+           <% if (userIN) { %>
+            <li><a onclick="return confirm('Are you sure for logout?')" href="/user/logout">Logout</a></li>
+           <% } %> 
            <li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
         </ul>
      </div>
