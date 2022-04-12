@@ -30,4 +30,7 @@ router.route('/').get(FurnitureController.getAllFurniture);
 // Get Furniture by category
 router.route('/:categorySlug').get(FurnitureController.getFurnitureByCategory);
 
+// Get One Furniture
+router.route('/single/:furnitureSlug').get(FurnitureController.getOneFurniture);
+
 module.exports = router

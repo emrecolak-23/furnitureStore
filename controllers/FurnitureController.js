@@ -46,14 +46,30 @@ exports.getFurnitureByCategory = async (req, res) => {
       filter = {category: category._id}
     }
     const furnitures = await Furniture.find(filter);
-    res.status(200).json({
-      status: 'Furnitures listed by category',
-      furnitures
+    res.status(200).render('productByCategory', {
+      page_name: 'furnitures',
+      furnitures,
+      category
     })
   } catch(error) {
     res.status(400).json({
       status: 'Something went wrong',
       error
     })
+  }
+}
+
+exports.getOneFurniture = async (req, res) => {
+  try {
+    const furniture = await Furniture.findOne({slug:req.params.furnitureSlug}).populate('category')
+    res.status(200).render('furniture-single', {
+      page_name: 'furniture',
+      furniture
+    })
+  } catch(error) {
+    res.status(400).json({
+      status: 'Something went wrong',
+      error
+    });
   }
 }

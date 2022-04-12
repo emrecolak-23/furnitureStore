@@ -1,0 +1,28 @@
+<%- include('partials/_header')  %> 
+
+<%- include('partials/_navigation')  %> 
+
+<div class="about_section layout_padding">
+  <div class="container">
+     <div class="row">
+        <div class="col-md-12">
+           <h1 class="about_taital"><%= furniture.name %></h1>
+        </div>
+     </div>
+     <div class="about_section_2 layout_padding">
+        <div class="row">
+           <div class="col-md-6">
+              <div class="about_img"><img src="/<%= furniture.image  %>"></div>
+           </div>
+           <div class="col-md-6">
+              <div class="good_text">Category: <span><%= furniture.category.name  %></span> </div>
+              <p class="making_text"><%= furniture.description  %></p>
+              <div class="read_bt"><a href="#">Reserve</a></div>
+           </div>
+        </div>
+     </div>
+  </div>
+</div>
+
+
+<%- include('partials/_footer')  %> 

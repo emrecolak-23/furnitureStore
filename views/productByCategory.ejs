@@ -7,67 +7,21 @@
          <div class="container">
             <div class="row">
                <div class="col-md-12">
-                  <h1 class="blog_taital">Trending Products</h1>
+                  <h1 class="blog_taital"><%= category.name  %></h1>
                </div>
             </div>
          </div>
          <div class="container">
             <div class="blog_section_2 layout_padding">
                <div class="row">
-                  <div class="col-lg-4 col-md-4 col-sm-12">
-                     <div class="blog_box">
-                        <div class="blog_img"><img src="images/blog-img1.png"></div>
-                        <p class="chair_text">Chairs</p>
+                  <% for (let i = 0; i<furnitures.length;i++) { %>
+                     <div class="col-lg-4 col-md-4 col-sm-12">
+                        <div class="blog_box">
+                           <div class="blog_img"><img src="/<%= furnitures[i].image %>"></div>
+                           <p class="chair_text"><a href="/furniture/single/<%= furnitures[i].slug  %>"><%= furnitures[i].name  %></a></p>
+                        </div>
                      </div>
-                  </div>
-                  <div class="col-lg-4 col-md-4 col-sm-12">
-                     <div class="blog_box">
-                        <div class="blog_img"><img src="images/blog-img2.png"></div>
-                        <p class="chair_text">Chair</p>
-                     </div>
-                  </div>
-                  <div class="col-lg-4 col-md-4 col-sm-12">
-                     <div class="blog_box">
-                        <div class="blog_img"><img src="images/blog-img3.png"></div>
-                        <p class="chair_text">Sideboard</p>
-                     </div>
-                  </div>
-                  <div class="col-lg-4 col-md-4 col-sm-12">
-                     <div class="blog_box">
-                        <div class="blog_img"><img src="images/blog-img4.png"></div>
-                        <p class="chair_text">Chairs</p>
-                     </div>
-                  </div>
-                  <div class="col-lg-4 col-md-4 col-sm-12">
-                     <div class="blog_box">
-                        <div class="blog_img"><img src="images/blog-img5.png"></div>
-                        <p class="chair_text">Chair</p>
-                     </div>
-                  </div>
-                  <div class="col-lg-4 col-md-4 col-sm-12">
-                     <div class="blog_box">
-                        <div class="blog_img"><img src="images/blog-img6.png"></div>
-                        <p class="chair_text">Sideboard</p>
-                     </div>
-                  </div>
-                  <div class="col-lg-4 col-md-4 col-sm-12">
-                     <div class="blog_box">
-                        <div class="blog_img"><img src="images/blog-img7.png"></div>
-                        <p class="chair_text">Chairs</p>
-                     </div>
-                  </div>
-                  <div class="col-lg-4 col-md-4 col-sm-12">
-                     <div class="blog_box">
-                        <div class="blog_img"><img src="images/blog-img8.png"></div>
-                        <p class="chair_text">Chair</p>
-                     </div>
-                  </div>
-                  <div class="col-lg-4 col-md-4 col-sm-12">
-                     <div class="blog_box">
-                        <div class="blog_img"><img src="images/blog-img9.png"></div>
-                        <p class="chair_text">Sideboard</p>
-                     </div>
-                  </div>
+                  <% } %> 
                </div>
             </div>
             <div class="readmore_bt"><a href="#">See More</a></div>
