@@ -1,6 +1,6 @@
 // Import Packages
 const mongoose = require('mongoose');
-
+const bcrypt = require('bcrypt');
 // Create Schema
 const Schema = mongoose.Schema;
 
@@ -26,6 +26,15 @@ const UserSchema = new Schema({
     default: "customer"
   }
 })
+
+UserSchema.pre('save', function(next){
+  const user = this;
+  bcrypt.hash(user.password, 10, function(error, hash) {
+    if (error) throw error;
+    user.password = hash;
+    next();
+  })
+});
 
 // Create User Model
 const User = mongoose.model('User', UserSchema);
