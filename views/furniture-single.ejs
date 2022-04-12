@@ -19,8 +19,10 @@
                Price: <span><%= furniture.price  %>$</span>  
              </div>
              <p class="mb-2">
-               <b>Category:</b><span> <%= furniture.category.name  %> </span>
+               <b>Category:</b><span> <%= furniture.category.name  %> </span> <br>
+               <b>Seller:</b><span> <%= furniture.user.name  %> </span>
             </p>
+
             <p class="making_text"><%= furniture.description  %></p>
               <div class="read_bt"><a href="#">Reserve</a></div>
            </div>

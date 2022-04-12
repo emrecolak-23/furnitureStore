@@ -24,6 +24,20 @@
           </button>
         </div>
       </div>
+      <div class="row">
+        <% for (let i = 0; i<furnitures.length;i++) { %>
+           <div class="col-lg-4 col-md-4 col-sm-12">
+              <div class="blog_box">
+                 <div class="blog_img"><img src="/<%= furnitures[i].image %>"></div>
+                 <p class="chair_text"><a href="/furniture/single/<%= furnitures[i].slug  %>"><%= furnitures[i].name  %></a></p>
+                 <div class="clearfix">
+                   <a class="float-left text-white btn btn-danger btn-sm">DELETE</a>
+                   <a class="float-right text-white btn btn-warning btn-sm">UPDATE</a>
+                 </div>
+               </div>
+           </div>
+        <% } %> 
+     </div>
      </div>
   </div>
 </div>
@@ -80,6 +94,9 @@
                         <div class="form-group">
                           <input type="hidden" name="role" class="form-control"  value="<%= user.role %>">
                         </div>
+                        <div class="form-group">
+                          <input type="hidden" name="user" class="form-control">
+                        </div>
                         <div class="form-group mb-5">
                           <textarea
                             rows="8"
@@ -110,7 +127,7 @@
                 </div>
               </div>
             </div>
-          </div>
+</div>
 <!-- Add Furniture Modal End-->
 <% } %> 
 <%- include('partials/_footer')  %> 

@@ -31,6 +31,10 @@ const FurnitureSchema = new Schema({
     get: v => (v/100).toFixed(2),
     set: v => v*100
   },
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  },
   createdAt: {
     type: Date,
     default: Date.now
