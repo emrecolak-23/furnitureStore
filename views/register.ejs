@@ -14,14 +14,14 @@
         <div class="row">
            <div class="col-md-12">
               <div class="mail_section map_form_container">
-                 <form action="">
+                 <form method="post" action="/user/register">
                     <input type="text" class="mail_text" placeholder="Name" name="name">
                     <input type="text" class="mail_text" placeholder="Email" name="email">
                     <select class="mail_text" name="role">
-                      <option>member</option>
-                      <option>trainer</option>
+                      <option>customer</option>
+                      <option>seller</option>
                   </select>
-                    <input type="text" class="mail_text mb-4" placeholder="Password" name="Password">
+                    <input type="password" class="mail_text mb-4" placeholder="Password" name="password">
                     <div class="btn_main">
                       <button type="submit" value="LOGIN" id="submit" class="btn btn-warning btn-radius btn-brd btn-block text-white">REGISTER</button>
                     </div>

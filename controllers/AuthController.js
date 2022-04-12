@@ -3,15 +3,12 @@ const User = require('../models/User');
 
 exports.register = async (req, res) => {
   try {
-    const user =  await User.create(req.body);
-    res.status(201).json({
-      status: `${user.name} has been successfully registered`,
-      user
-    })
-  } catch(error) {
+    const user = await User.create(req.body);
+    res.status(201).redirect('/login');
+  } catch (error) {
     res.status(400).json({
       status: 'Something went wrong',
-      error
-    })
+      error,
+    });
   }
-}
+};
