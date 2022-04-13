@@ -3,12 +3,20 @@ const Category = require('../models/Category');
 const Furniture = require('../models/Furnitures');
 exports.getHomePage = async (req, res) => {
   try {
+    let page = req.query.page || 1;
+    let furnituresPerPage = 3;
+    let totalFurnitures = await Furniture.find().countDocuments();
+
     const categories = await Category.find().limit(3);
-    const furnitures = await Furniture.find().sort('-createdAt');
+    const furnitures = await Furniture.find().sort('-createdAt')
+                              .skip((page-1)*furnituresPerPage)
+                              .limit(furnituresPerPage);
     res.status(200).render('index', {
       page_name: 'index',
       categories,
-      furnitures
+      furnitures,
+      current: page,
+      pages: Math.ceil(totalFurnitures/furnituresPerPage)
     });
   } catch (error) {
     res.status(400).json({
