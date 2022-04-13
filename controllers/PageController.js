@@ -1,93 +1,97 @@
-const Category = require("../models/Category");
-
-exports.getHomePage = (req, res) => {
+// Import Models
+const Category = require('../models/Category');
+const Furniture = require('../models/Furnitures');
+exports.getHomePage = async (req, res) => {
   try {
+    const categories = await Category.find().limit(3);
+    const furnitures = await Furniture.find().sort('-createdAt');
     res.status(200).render('index', {
-      page_name: 'index'
+      page_name: 'index',
+      categories,
+      furnitures
     });
-  } catch(error) {
+  } catch (error) {
     res.status(400).json({
       status: 'Home page not loaded',
-      error
+      error,
     });
   }
-}
+};
 
 exports.getFurniturePage = async (req, res) => {
   try {
-    const categories = await Category.find().limit(3)
+    const categories = await Category.find().limit(3);
     res.status(200).render('furnitures', {
       page_name: 'furnitures',
-      categories
+      categories,
     });
-  } catch(error) {
+  } catch (error) {
     res.status(400).json({
       status: 'Furniture page not loaded',
-      error
+      error,
     });
   }
-  
-}
+};
 
 exports.getContactPage = (req, res) => {
   try {
     res.status(200).render('contact', {
-      page_name: 'contact'
+      page_name: 'contact',
     });
-  } catch(error) {
+  } catch (error) {
     res.status(400).json({
       status: 'Contact page not loaded',
-      error
+      error,
     });
   }
-}
+};
 
 exports.getBlogPage = (req, res) => {
   try {
     res.status(200).render('blog', {
-      page_name: 'blog'
+      page_name: 'blog',
     });
-  } catch(error) {
+  } catch (error) {
     res.status(400).json({
       status: 'Blog page not loaded',
-      error
+      error,
     });
   }
-}
+};
 
 exports.getAboutPage = (req, res) => {
   try {
     res.status(200).render('about', {
-      page_name: 'about'
+      page_name: 'about',
     });
-  } catch(error) {
+  } catch (error) {
     res.status(400).json({
       status: 'About page not loaded',
-      error
+      error,
     });
   }
-}
+};
 
 exports.getLoginPage = (req, res) => {
-  try{
+  try {
     res.status(200).render('login', {
-      page_name: 'login'
+      page_name: 'login',
     });
-  } catch(error) {
+  } catch (error) {
     res.status(400).json({
-      status: 'Login page not loaded'
+      status: 'Login page not loaded',
     });
   }
-}
+};
 
 exports.getRegisterPage = (req, res) => {
   try {
     res.status(200).render('register', {
-      page_name:'register'
+      page_name: 'register',
     });
-  } catch(error) {
+  } catch (error) {
     res.status(400).json({
-      status: 'Register page not loaded'
+      status: 'Register page not loaded',
     });
   }
-}
+};
