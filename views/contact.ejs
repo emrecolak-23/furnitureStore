@@ -14,19 +14,19 @@
                <div class="row">
                   <div class="col-md-12">
                      <div class="mail_section map_form_container">
-                        <form action="">
-                           <input type="text" class="mail_text" placeholder="Name" name="Name">
-                           <input type="text" class="mail_text" placeholder="Phone Number" name="Phone Number"> 
-                           <input type="text" class="mail_text" placeholder="Email" name="Email">
-                           <textarea class="massage-bt" placeholder="Massage" rows="5" id="comment" name="Massage"></textarea>
+                        <form action="/contact" method="post">
+                           <input type="text" class="mail_text" placeholder="Name" name="name">
+                           <input type="text" class="mail_text" placeholder="Phone Number" name="phone"> 
+                           <input type="text" class="mail_text" placeholder="Email" name="email">
+                           <textarea class="massage-bt" placeholder="Massage" rows="5" id="comment" name="message"></textarea>
                            <div class="btn_main">
-                              <div class="send_bt"><a href="#">Send</a></div>
-                              <div class="map_bt active"><a href="#" id="showMap">Map</a></div>
+                              <div class="send_bt mr-2"><button>Send</button></div>
+                              <div class="map_bt active"><button id="showMap">Map</button></div>
                            </div>
                         </form>
                         <div class="map_main map_container">
                            <div class="map-responsive">
-                              <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA0s1a7phLN0iaD6-UE7m4qP-z21pH0eSc&amp;q=Eiffel+Tower+Paris+France" width="600" height="368" frameborder="0" style="border:0; width: 100%;" allowfullscreen=""></iframe>
+                              <iframe src="https://maps.google.com/maps?q=Atat%C3%BCrk%20K%C3%B6%C5%9Fk%C3%BC%20Trabzon&t=&z=13&ie=UTF8&iwloc=&output=embed" width="600" height="368" frameborder="0" style="border:0; width: 100%;" allowfullscreen=""></iframe>
                               <div class="btn_main">
                                  <div class="map_bt d-flex justify-content-center w-100 map_center"><a href="#" id="showForm">Form</a></div>
                               </div>

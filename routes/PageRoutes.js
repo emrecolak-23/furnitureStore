@@ -17,8 +17,8 @@ router.route('/').get(PageController.getHomePage);
 router.route('/furnitures').get(PageController.getFurniturePage);
 
 // Contact page
-router.route('/contact').get(PageController.getContactPage);
-
+router.route('/contact').get(PageController.getContactPage)
+                        .post(PageController.sendEmail);
 // Blog Page
 router.route('/blog').get(PageController.getBlogPage);
 
