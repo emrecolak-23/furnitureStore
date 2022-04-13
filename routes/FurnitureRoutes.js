@@ -37,4 +37,6 @@ router.route('/single/:furnitureSlug').get(FurnitureController.getOneFurniture);
 router.route('/:id').delete(FurnitureController.deleteFurniture)
                     .put(FurnitureController.updateFurniture);
 
+router.route('/reserve').post(FurnitureController.reserveFurniture);
+
 module.exports = router

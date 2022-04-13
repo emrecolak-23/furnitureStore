@@ -24,7 +24,11 @@ const UserSchema = new Schema({
     type: String,
     enum: ["seller", "customer", "admin"],
     default: "customer"
-  }
+  },
+  furnitures: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Furniture'
+  }]
 })
 
 UserSchema.pre('save', function(next){
