@@ -33,11 +33,17 @@ const UserSchema = new Schema({
 
 UserSchema.pre('save', function(next){
   const user = this;
-  bcrypt.hash(user.password, 10, function(error, hash) {
-    if (error) throw error;
-    user.password = hash;
-    next();
+  if (!user.isModified('password')) return next();
+
+  bcrypt.genSalt(10, (err,salt)=> {
+    if (err) return next(err);
+    bcrypt.hash(user.password, salt, function(error, hash) {
+      if (error) throw error;
+      user.password = hash;
+      next();
+    })
   })
+  
 });
 
 // Create User Model
