@@ -3,6 +3,7 @@ const fs = require('fs');
 // Import Model
 const Furniture = require('../models/Furnitures');
 const Category = require('../models/Category');
+const User = require('../models/User');
 
 exports.createFurniture = async (req, res) => {
   const furniture = req.body;
@@ -64,9 +65,11 @@ exports.getOneFurniture = async (req, res) => {
     })
       .populate('category')
       .populate('user');
+    const user = await User.findById(req.session.userID);
     res.status(200).render('furniture-single', {
       page_name: 'furniture',
       furniture,
+      user,
     });
   } catch (error) {
     res.status(400).json({
@@ -87,6 +90,24 @@ exports.deleteFurniture = async (req, res) => {
     fs.unlinkSync(imageFile);
 
     res.status(200).redirect('/user/dashboard');
+  } catch (error) {
+    res.status(400).json({
+      status: 'Something went wrong',
+      error,
+    });
+  }
+};
+
+exports.updateFurniture = async (req, res) => {
+  try {
+    const furniture = await Furniture.findByIdAndUpdate(
+      { _id: req.params.id },
+      {
+        price: req.body.price,
+      }
+    );
+    await furniture.save();
+    res.status(201).redirect('/user/dashboard');
   } catch (error) {
     res.status(400).json({
       status: 'Something went wrong',

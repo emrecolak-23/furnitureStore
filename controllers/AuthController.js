@@ -56,7 +56,7 @@ exports.getDashboardPage = async (req, res) => {
     const user = await User.findOne({_id: req.session.userID});
     const categories = await Category.find();
     const furnitures = await Furniture.find({user: req.session.userID});
-    res.status(200).render('dashboard', {
+    res.render('dashboard', {
       page_name: 'dashboard',
       user,
       categories,

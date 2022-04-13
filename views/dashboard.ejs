@@ -1,7 +1,7 @@
 <%- include('partials/_header')  %>
 
 <%- include('partials/_navigation')  %> 
-
+<% if (user) { %> 
 <% if (user.role =='seller') { %> 
 <div class="about_section layout_padding">
   <div class="container">
@@ -32,10 +32,57 @@
                  <p class="chair_text"><a href="/furniture/single/<%= furnitures[i].slug  %>"><%= furnitures[i].name  %></a></p>
                  <div class="clearfix">
                    <a href="/furniture/<%= furnitures[i]._id %>?_method=DELETE" class="float-left text-white btn btn-danger btn-sm">DELETE</a>
-                   <a class="float-right text-white btn btn-warning btn-sm">UPDATE</a>
+                   <a data-toggle="modal" data-target="#updateModal<%= furnitures[i]._id  %>" class="float-right text-white btn btn-warning btn-sm">UPDATE</a>
                  </div>
                </div>
            </div>
+           <div
+              class="modal fade"
+              id="updateModal<%= furnitures[i]._id  %>"
+              tabindex="-1"
+              role="dialog"
+              aria-labelledby="myModalLabel"
+            >
+              <div
+                class="modal-dialog modal-dialog-centered modal-lg"
+                role="document"
+              >
+                <div class="modal-content">
+                  <div class="modal-body customer-box">
+                    <!-- Tab Panes -->
+                    <div class="tab-content">
+                      <div class="tab-pane active" id="Login">
+                        <form
+                          method="post"
+                          action="/furniture/<%= furnitures[i]._id %>?_method=PUT"
+                          class="tm-contact-form"
+                        > 
+                          <div class="form-group">
+                              <input
+                              type="number"
+                              name="price"
+                              class="mail_text mb-3"
+                              placeholder="Furniture Price"
+                              step="0.01"
+                              value="<%= furnitures[i].price  %>"
+                              required
+                              />
+                          </div>
+                          <div class="form-group">
+                            <button
+                              type="submit"
+                              class="btn btn-success rounded-5 d-block ml-auto mr-0 tm-btn-animate tm-btn-submit tm-icon-submit"
+                            >
+                              <span>Update Price</span>
+                            </button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
         <% } %> 
      </div>
      </div>
@@ -88,6 +135,7 @@
                             name="price"
                             class="mail_text"
                             placeholder="Furniture Price"
+                            step="0.01"
                             required
                           />
                         </div>
@@ -129,5 +177,7 @@
             </div>
 </div>
 <!-- Add Furniture Modal End-->
+<% } %> 
+
 <% } %> 
 <%- include('partials/_footer')  %> 

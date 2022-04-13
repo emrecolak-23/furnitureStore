@@ -24,8 +24,10 @@
             </p>
 
             <p class="making_text"><%= furniture.description  %></p>
-              <div class="read_bt"><a href="#">Reserve</a></div>
-           </div>
+             <% if (user.role =='customer') { %>  
+               <div class="read_bt"><a href="#">Reserve</a></div>
+             <% } %> 
+            </div>
         </div>
      </div>
   </div>
