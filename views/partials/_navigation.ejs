@@ -57,8 +57,14 @@
             <li class="<%= page_name=='dashboard' && 'active' %>"><a href="/user/dashboard">Dashboard</a></li>
             <li><a onclick="return confirm('Are you sure for logout?')" href="/user/logout">Logout</a></li>
            <% } %> 
-           <li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
-        </ul>
+           
+           <li class="float-right">
+            <form class="form-inline my-2 my-lg-0" action="/furniture" method="get">  
+            <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Search</button>
+            </form>
+           </li>
+         </ul>
      </div>
   </div>
 </div>

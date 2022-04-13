@@ -4,6 +4,7 @@ const fs = require('fs');
 const Furniture = require('../models/Furnitures');
 const Category = require('../models/Category');
 const User = require('../models/User');
+const { query } = require('express');
 
 exports.createFurniture = async (req, res) => {
   const furniture = req.body;
@@ -23,11 +24,24 @@ exports.createFurniture = async (req, res) => {
 
 exports.getAllFurniture = async (req, res) => {
   try {
-    const furnitures = await Furniture.find().sort('-createdAt');
-    res.status(200).json({
-      status: 'Get all furnitures',
+    let filter = {}
+    const query = req.query.search
+    if (query) {
+      filter = {name: query}
+    }
+    if (!query) {
+      filter.name = ""
+    }
+    const furnitures = await Furniture.find({
+      $or: [
+        {name: {$regex: ".*"+filter.name+".*", $options:"i"}}
+      ]
+    }).sort('-createdAt');
+    res.status(200).render('productByCategory', {
+      page_name: 'furnitures',
       furnitures,
-    });
+      category: null
+    })
   } catch (error) {
     res.status(400).json({
       status: 'Something went wrong',
