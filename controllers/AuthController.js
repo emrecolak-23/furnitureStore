@@ -53,7 +53,7 @@ exports.logout = (req, res) => {
 
 exports.getDashboardPage = async (req, res) => {
   try {
-    const user = await User.findOne({_id: req.session.userID});
+    const user = await User.findOne({_id: req.session.userID}).populate('furnitures')
     const categories = await Category.find();
     const furnitures = await Furniture.find({user: req.session.userID});
     res.render('dashboard', {

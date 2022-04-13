@@ -179,5 +179,30 @@
 <!-- Add Furniture Modal End-->
 <% } %> 
 
+<% if(user.role=='customer') { %> 
+  <div class="about_section layout_padding">
+    <div class="container">
+       <div class="row">
+          <div class="col-md-12">
+             <h1 class="about_taital"><%= user.name  %></h1>
+            <p class="about_text text-uppercase"><b>(<%= user.role  %>)</b></p>
+          </div>
+       </div>
+       <div class="row mb-3">
+        <% for (let i=0; i<user.furnitures.length;i++) { %>
+        <div class="col-lg-4 col-md-4 col-sm-12">
+           <div class="blog_box">
+             <div class="blog_img"><img src="/<%= user.furnitures[i].image %>"></div>
+             <p class="chair_text"><a href="/furniture/single/<%= user.furnitures[i].slug  %>"><%= user.furnitures[i].name  %></a></p>
+             <div class="clearfix">
+               <a href="/furniture/<%= user.furnitures[i]._id %>?_method=DELETE" class="float-left text-white btn btn-danger btn-sm">Release</a>
+             </div>
+           </div>
+        <% } %> 
+       </div>
+       </div>
+    </div>
+  </div>
+<% } %> 
 <% } %> 
 <%- include('partials/_footer')  %> 
