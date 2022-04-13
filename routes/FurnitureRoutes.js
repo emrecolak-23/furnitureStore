@@ -42,5 +42,5 @@ router
 router.route('/reserve').post(FurnitureController.reserveFurniture);
 
 // Release Furniture For Customer User Roler
-router.route('/reserve').post(FurnitureController.releaseFurniture);
+router.route('/release').post(FurnitureController.releaseFurniture);
 module.exports = router;
