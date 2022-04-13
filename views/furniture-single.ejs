@@ -24,11 +24,19 @@
             </p>
 
             <p class="making_text"><%= furniture.description  %></p>
-             <% if (user.role =='customer') { %>  
+             <% if (user.role =='customer') { %> 
+               <% if (!user.furnitures.includes(furniture._id)) { %>  
                <form action="/furniture/reserve" method="post">
                   <input type="hidden" name="furniture_id" value="<%= furniture._id  %>">
                   <div class="read_bt"><button class="btn btn-warning btn-lg text-white">Reserve</button></div>
                </form>
+               <% } %> 
+               <% if (user.furnitures.includes(furniture._id)) { %>
+                  <form action="/furniture/release" method="post">
+                     <input type="hidden" name="furniture_id" value="<%= furniture._id  %>">
+                     <div class="read_bt"><button class="btn btn-danger btn-lg text-white">Release</button></div>
+                  </form>
+               <% } %> 
              <% } %> 
             </div>
         </div>

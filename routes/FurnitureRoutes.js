@@ -22,7 +22,7 @@ let upload = multer({
 const router = express.Router();
 
 // Create Furniture
-router.route('/').post(upload,FurnitureController.createFurniture);
+router.route('/').post(upload, FurnitureController.createFurniture);
 
 // Get All Furnitures
 router.route('/').get(FurnitureController.getAllFurniture);
@@ -34,9 +34,13 @@ router.route('/:categorySlug').get(FurnitureController.getFurnitureByCategory);
 router.route('/single/:furnitureSlug').get(FurnitureController.getOneFurniture);
 
 // Delete & Update Furniture
-router.route('/:id').delete(FurnitureController.deleteFurniture)
-                    .put(FurnitureController.updateFurniture);
-
+router
+  .route('/:id')
+  .delete(FurnitureController.deleteFurniture)
+  .put(FurnitureController.updateFurniture);
+// Reserve Furniture For Customer User Roler
 router.route('/reserve').post(FurnitureController.reserveFurniture);
 
-module.exports = router
+// Release Furniture For Customer User Roler
+router.route('/reserve').post(FurnitureController.releaseFurniture);
+module.exports = router;

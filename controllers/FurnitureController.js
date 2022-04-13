@@ -129,3 +129,17 @@ exports.reserveFurniture = async (req, res) => {
     })
   }
 }
+
+exports.releaseFurniture = async (req, res) => {
+  try {
+    const user = await User.findById(req.session.userID);
+    await user.furnitures.pull(req.body.furniture_id);
+    await user.save();
+    res.status(200).redirect('/user/dashboard');
+  } catch(error) {
+    res.status(400).json({
+      status: 'Something went wrong',
+      error
+    })
+  }
+}
