@@ -1,6 +1,10 @@
 // Import Packages
 const mongoose = require('mongoose');
 const slugify = require('slugify');
+
+// Import Logger
+const Logger = require('../logger/Furniture');
+
 // Create Schema Object
 const Schema = mongoose.Schema;
 
@@ -48,6 +52,13 @@ FurnitureSchema.pre('validate', function(next){
   })
   next();
 });
+
+FurnitureSchema.post('save', (doc) => {
+  Logger.log({
+    level: 'info',
+    message: doc
+  })
+})
 
 // Create Furniture Model
 const Furniture = mongoose.model('Furniture', FurnitureSchema);

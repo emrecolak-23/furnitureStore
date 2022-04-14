@@ -4,7 +4,9 @@ const fs = require('fs');
 const Furniture = require('../models/Furnitures');
 const Category = require('../models/Category');
 const User = require('../models/User');
-const { query } = require('express');
+
+// Import Logger
+const Logger = require('../logger/Furniture');
 
 exports.createFurniture = async (req, res) => {
   const furniture = req.body;
@@ -17,6 +19,10 @@ exports.createFurniture = async (req, res) => {
     res.status(201).redirect('/user/dashboard');
   } catch (error) {
     req.flash('error', 'Something went wrong!');
+    Logger.log({
+      level: 'error',
+      message: error
+    })
     res.status(400).redirect('/user/dashboard');
   }
 };
@@ -40,6 +46,10 @@ exports.getAllFurniture = async (req, res) => {
       category: null,
     });
   } catch (error) {
+    Logger.log({
+      level: 'error',
+      message: error
+    })
     res.status(400).json({
       status: 'Something went wrong',
       error,
@@ -72,6 +82,10 @@ exports.getFurnitureByCategory = async (req, res) => {
       pages: Math.ceil(totalFurniture / furniturePerPage),
     });
   } catch (error) {
+    Logger.log({
+      level: 'error',
+      message: error
+    })
     res.status(400).json({
       status: 'Something went wrong',
       error,
@@ -93,6 +107,10 @@ exports.getOneFurniture = async (req, res) => {
       user,
     });
   } catch (error) {
+    Logger.log({
+      level: 'error',
+      message: error
+    })
     res.status(400).json({
       status: 'Something went wrong',
       error,
@@ -112,6 +130,10 @@ exports.deleteFurniture = async (req, res) => {
     await req.flash('success', `${furniture.name} has been deleted successfully`);
     res.status(200).redirect('/user/dashboard');
   } catch (error) {
+    Logger.log({
+      level: 'error',
+      message: error
+    })
     req.flash('error', 'Something went wrong');
     res.status(400).redirect('/user/dashboard');
   }
@@ -132,6 +154,10 @@ exports.updateFurniture = async (req, res) => {
     );
     res.status(201).redirect('/user/dashboard');
   } catch (error) {
+    Logger.log({
+      level: 'error',
+      message: error
+    })
     req.flash('error', 'Something went wrong!');
     res.status(400).redirect('/user/dashboard');
   }
@@ -145,6 +171,10 @@ exports.reserveFurniture = async (req, res) => {
     req.flash('success', `Hey ${user.name}, do you like this furniture:D`);
     res.status(201).redirect('/user/dashboard');
   } catch (error) {
+    Logger.log({
+      level: 'error',
+      message: error
+    })
     req.flash('error', 'Something went wrong!');
     res.status(400).redirect('/user/dashboard');
   }
@@ -158,6 +188,10 @@ exports.releaseFurniture = async (req, res) => {
     req.flash('success', `Hey ${user.name}, why you dont like this furniture?`);
     res.status(200).redirect('/user/dashboard');
   } catch (error) {
+    Logger.log({
+      level: 'error',
+      message: error
+    })
     req.flash('error', 'Something went wrong');
     res.status(400).redirect('/user/dashboard');
   }
