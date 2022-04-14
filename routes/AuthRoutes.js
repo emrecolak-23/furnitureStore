@@ -19,4 +19,7 @@ router.route('/logout').get(AuthController.logout);
 // Dashboard Page Process
 router.route('/dashboard').get(AuthMiddleware,AuthController.getDashboardPage);
 
+// Delete User
+router.route('/:id').delete(AuthController.deleteUser);
+
 module.exports = router

@@ -56,13 +56,29 @@ exports.getDashboardPage = async (req, res) => {
     const user = await User.findOne({_id: req.session.userID}).populate('furnitures')
     const categories = await Category.find();
     const furnitures = await Furniture.find({user: req.session.userID});
+    
+    // Dashboard for admin 
+    const users = await User.find();
     res.render('dashboard', {
       page_name: 'dashboard',
       user,
       categories,
-      furnitures
+      furnitures,
+      users
     })
   } catch(error) {
     res.status(400).redirect('/login');
+  }
+}
+
+exports.deleteUser = async (req, res) => {
+  try {
+    const user = await User.findByIdAndRemove(req.params.id);
+    res.status(200).redirect('/user/dashboard')
+  } catch(error) {
+    res.status(400).json({
+      status: 'Something went wrong',
+      error
+    })
   }
 }

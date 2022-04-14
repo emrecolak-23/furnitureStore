@@ -208,5 +208,149 @@
     </div>
   </div>
 <% } %> 
+
+<% if(user.role=='admin') { %>
+  <div class="about_section layout_padding">
+    <div class="container">
+       <div class="row">
+          <div class="col-md-12">
+             <h1 class="about_taital"><%= user.name  %></h1>
+            <p class="about_text text-uppercase"><b>(<%= user.role  %>)</b></p>
+          </div>
+       </div>
+    </div>
+  </div>
+  <div class="about_section_2 layout_padding">
+    <div class="row">
+       <div class="col-md-12 text-center">
+        <button
+          type="button"
+          class="btn btn-success mb-3"
+          data-toggle="modal"
+          data-target="#addFurnitureAdmin"
+        >
+          Create New Furniture
+        </button>
+      </div>
+    </div>
+    <div class="row mt-5">
+      <div class="col-md-12 text-center">
+        <h1>Users</h1>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#ID</th>
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for (let i=0;i<users.length;i++) { %> 
+            <tr>
+              <th scope="row"><%= users[i]._id %></th>
+              <td><%= users[i].name %></td>
+              <td><%= users[i].role %></td>
+              <td><a onclick="return confirm('Are you sure?')" href="/user/<%= users[i]._id %>?_method=DELETE" class="btn btn-outline-danger btn-sm text-uppercase">Delete</a></td>
+            </tr>
+            <% } %> 
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  
+
+  
+
+  <!-- Add Furniture Modal Start -->
+<div
+class="modal fade"
+id="addFurnitureAdmin"
+tabindex="-1"
+role="dialog"
+aria-labelledby="myModalLabel"
+>
+<div
+  class="modal-dialog modal-dialog-centered modal-lg"
+  role="document"
+>
+  <div class="modal-content">
+    <div class="modal-body customer-box">
+      <!-- Tab Panes -->
+      <div class="tab-content">
+        <div class="tab-pane active" id="Login">
+          <form
+            method="post"
+            action="/furniture"
+            class="tm-contact-form"
+            enctype="multipart/form-data"
+          >
+            <div class="form-group mb-3">
+              <input
+                type="text"
+                name="name"
+                class="mail_text"
+                placeholder="Furniture Name"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <select name="category" class="mail_text">
+                <option value="" disabled selected>Select category</option>    
+                <% for(let i = 0; i<categories.length; i++) { %> 
+                <option value="<%= categories[i]._id %>"><%= categories[i].name %> </option>
+                <% } %> 
+                </select>
+            </div>
+            <div class="form-group mb-3">
+              <input
+                type="number"
+                name="price"
+                class="mail_text"
+                placeholder="Furniture Price"
+                step="0.01"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <input type="hidden" name="role" class="form-control"  value="<%= user.role %>">
+            </div>
+            <div class="form-group">
+              <input type="hidden" name="user" class="form-control">
+            </div>
+            <div class="form-group mb-5">
+              <textarea
+                rows="8"
+                name="description"
+                class="mail_text rounded-0"
+                placeholder="Furniture Description"
+                required
+              ></textarea>
+            </div>
+            <div class="form-group mb-3">
+              <input
+                type="file"
+                name="image"
+                class="form-control-file rounded-0"
+              />
+            </div>
+            <div class="form-group mb-0">
+              <button
+                type="submit"
+                class="btn btn-success rounded-5 d-block ml-auto mr-0 tm-btn-animate tm-btn-submit tm-icon-submit"
+              >
+                <span>Add</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+  <!-- Add Furniture Modal End -->
+<% } %>   
 <% } %> 
 <%- include('partials/_footer')  %> 
