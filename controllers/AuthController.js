@@ -5,6 +5,9 @@ const User = require('../models/User');
 const Category = require('../models/Category');
 const Furniture = require('../models/Furnitures');
 
+// Import Logger
+const Logger = require('../logger/User');
+
 exports.register = async (req, res) => {
   try {
     const user = await User.create(req.body);
@@ -12,6 +15,10 @@ exports.register = async (req, res) => {
     res.status(201).redirect('/login');
   } catch (error) {
     req.flash('error', 'Please try again!');
+    Logger.log({
+      level: 'error',
+      message: error
+    });
     res.status(400).redirect('/register');
   }
 };
@@ -84,6 +91,10 @@ exports.deleteUser = async (req, res) => {
     req.flash('success', `${user.name} has been deleted successfully`);
     res.status(200).redirect('/user/dashboard');
   } catch(error) {
+    Logger.log({
+      level: 'error',
+      message: error
+    });
     req.flash('error', 'Something went wrong');
     res.status(400).redirect('/user/dashboard');
   }

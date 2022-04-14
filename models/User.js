@@ -1,6 +1,10 @@
 // Import Packages
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+
+// Import Logger
+const Logger = require('../logger/User');
+
 // Create Schema
 const Schema = mongoose.Schema;
 
@@ -44,6 +48,13 @@ UserSchema.pre('save', function(next){
     })
   })
   
+});
+
+UserSchema.post('save', (doc)=> {
+  Logger.log({
+    level: 'info',
+    message: doc
+  });
 });
 
 // Create User Model

@@ -1,6 +1,10 @@
 // Import Packages
 const mongoose = require('mongoose');
 const slugify = require('slugify');
+
+// Import Logger
+const Logger = require('../logger/Category');
+
 // Create Schema
 const Schema = mongoose.Schema;
 
@@ -26,7 +30,14 @@ CategorySchema.pre('validate', function(next){
     strict: true
   });
   next();
-})
+});
+
+CategorySchema.post('save', (doc)=> {
+  Logger.log({
+    level: 'info',
+    message: doc
+  })
+});
 
 // Create Category Model
 const Category = mongoose.model('Category', CategorySchema);

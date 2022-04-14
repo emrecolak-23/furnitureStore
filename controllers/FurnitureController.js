@@ -7,6 +7,7 @@ const User = require('../models/User');
 
 // Import Logger
 const Logger = require('../logger/Furniture');
+const LoggerUser = require('../logger/User');
 
 exports.createFurniture = async (req, res) => {
   const furniture = req.body;
@@ -171,7 +172,7 @@ exports.reserveFurniture = async (req, res) => {
     req.flash('success', `Hey ${user.name}, do you like this furniture:D`);
     res.status(201).redirect('/user/dashboard');
   } catch (error) {
-    Logger.log({
+    LoggerUser.log({
       level: 'error',
       message: error
     })
@@ -188,7 +189,7 @@ exports.releaseFurniture = async (req, res) => {
     req.flash('success', `Hey ${user.name}, why you dont like this furniture?`);
     res.status(200).redirect('/user/dashboard');
   } catch (error) {
-    Logger.log({
+    LoggerUser.log({
       level: 'error',
       message: error
     })
