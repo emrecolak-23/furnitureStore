@@ -13,35 +13,32 @@ exports.createFurniture = async (req, res) => {
   furniture.user = req.session.userID;
   try {
     await Furniture.create(furniture);
+    req.flash('success', `${furniture.name} has been added successfully`);
     res.status(201).redirect('/user/dashboard');
   } catch (error) {
-    res.status(400).json({
-      status: 'Something went wrong',
-      error,
-    });
+    req.flash('error', 'Something went wrong!');
+    res.status(400).redirect('/user/dashboard');
   }
 };
 
 exports.getAllFurniture = async (req, res) => {
   try {
-    let filter = {}
-    const query = req.query.search
+    let filter = {};
+    const query = req.query.search;
     if (query) {
-      filter = {name: query}
+      filter = { name: query };
     }
     if (!query) {
-      filter.name = ""
+      filter.name = '';
     }
     const furnitures = await Furniture.find({
-      $or: [
-        {name: {$regex: ".*"+filter.name+".*", $options:"i"}}
-      ]
+      $or: [{ name: { $regex: '.*' + filter.name + '.*', $options: 'i' } }],
     }).sort('-createdAt');
     res.status(200).render('productByCategory', {
       page_name: 'furnitures',
       furnitures,
-      category: null
-    })
+      category: null,
+    });
   } catch (error) {
     res.status(400).json({
       status: 'Something went wrong',
@@ -65,14 +62,14 @@ exports.getFurnitureByCategory = async (req, res) => {
     let totalFurniture = await Furniture.find(filter).countDocuments();
 
     const furnitures = await Furniture.find(filter)
-                                      .limit(furniturePerPage)
-                                      .skip((page-1)*furniturePerPage)
+      .limit(furniturePerPage)
+      .skip((page - 1) * furniturePerPage);
     res.status(200).render('productByCategory', {
       page_name: 'furnitures',
       furnitures,
       category,
       current: page,
-      pages: Math.ceil(totalFurniture/furniturePerPage)
+      pages: Math.ceil(totalFurniture / furniturePerPage),
     });
   } catch (error) {
     res.status(400).json({
@@ -112,13 +109,11 @@ exports.deleteFurniture = async (req, res) => {
     let imageFile = __dirname + '/../uploads/' + furniture.image;
 
     fs.unlinkSync(imageFile);
-
+    req.flash('success', `${furniture.name} has been deleted successfully`);
     res.status(200).redirect('/user/dashboard');
   } catch (error) {
-    res.status(400).json({
-      status: 'Something went wrong',
-      error,
-    });
+    req.flash('error', 'Something went wrong');
+    res.status(400).redirect('/user/dashboard');
   }
 };
 
@@ -131,39 +126,39 @@ exports.updateFurniture = async (req, res) => {
       }
     );
     await furniture.save();
+    req.flash(
+      'success',
+      `${furniture.name} price has been updated successfully`
+    );
     res.status(201).redirect('/user/dashboard');
   } catch (error) {
-    res.status(400).json({
-      status: 'Something went wrong',
-      error,
-    });
+    req.flash('error', 'Something went wrong!');
+    res.status(400).redirect('/user/dashboard');
   }
 };
 
 exports.reserveFurniture = async (req, res) => {
   try {
     const user = await User.findById(req.session.userID);
-    await user.furnitures.push({_id:req.body.furniture_id});
+    await user.furnitures.push({ _id: req.body.furniture_id });
     await user.save();
+    req.flash('success', `Hey ${user.name}, do you like this furniture:D`);
     res.status(201).redirect('/user/dashboard');
-  } catch(error) {
-    res.status(400).json({
-      status: 'Something went wrong',
-      error
-    })
+  } catch (error) {
+    req.flash('error', 'Something went wrong!');
+    res.status(400).redirect('/user/dashboard');
   }
-}
+};
 
 exports.releaseFurniture = async (req, res) => {
   try {
     const user = await User.findById(req.session.userID);
     await user.furnitures.pull(req.body.furniture_id);
     await user.save();
+    req.flash('success', `Hey ${user.name}, why you dont like this furniture?`);
     res.status(200).redirect('/user/dashboard');
-  } catch(error) {
-    res.status(400).json({
-      status: 'Something went wrong',
-      error
-    })
+  } catch (error) {
+    req.flash('error', 'Something went wrong');
+    res.status(400).redirect('/user/dashboard');
   }
-}
+};

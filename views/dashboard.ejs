@@ -10,6 +10,19 @@
            <h1 class="about_taital"><%= user.name  %></h1>
           <p class="about_text text-uppercase"><b>(<%= user.role  %>)</b></p>
         </div>
+        <% if(flashMessages) { %>
+          <div class="col-md-12 text-center">
+            <% if(flashMessages.success) { %>
+              <div class="alert alert-success" role="alert">
+                <%= flashMessages.success  %> 
+              </div>
+            <% } else if(flashMessages.error) { %> 
+              <div class="alert alert-danger" role="alert">
+                <%= flashMessages.error  %> 
+              </div>
+            <% } %> 
+          </div>
+        <% } %> 
      </div>
      <div class="about_section_2 layout_padding">
       <div class="row">
@@ -187,13 +200,26 @@
              <h1 class="about_taital"><%= user.name  %></h1>
             <p class="about_text text-uppercase"><b>(<%= user.role  %>)</b></p>
           </div>
+          <% if(flashMessages) { %>
+            <div class="col-md-12 text-center">
+              <% if(flashMessages.success) { %>
+                <div class="alert alert-success" role="alert">
+                  <%= flashMessages.success  %> 
+                </div>
+              <% } else if(flashMessages.error) { %> 
+                <div class="alert alert-danger" role="alert">
+                  <%= flashMessages.error  %> 
+                </div>
+              <% } %> 
+            </div>
+          <% } %> 
        </div>
        <div class="row mb-3">
         <% for (let i=0; i<user.furnitures.length;i++) { %>
         <div class="col-lg-4 col-md-4 col-sm-12">
            <div class="blog_box">
              <div class="blog_img"><img src="/<%= user.furnitures[i].image %>"></div>
-             <p class="chair_text"><a href="/furniture/single/<%= user.furnitures[i].slug  %>"><%= user.furnitures[i].name  %></a></p>
+             <p class="chair_text"><a href="/furniture/single/<%= user.furnitures[i].slug  %>"><%= user.furnitures[i].name.substring(0,25) + '...'  %></a></p>
              <div class="clearfix">
               <form action="/furniture/release" method="post">
                 <input type="hidden" name="furniture_id" value="<%= user.furnitures[i]._id %>">
@@ -217,6 +243,19 @@
              <h1 class="about_taital"><%= user.name  %></h1>
             <p class="about_text text-uppercase"><b>(<%= user.role  %>)</b></p>
           </div>
+          <% if(flashMessages) { %>
+            <div class="col-md-12 text-center">
+              <% if(flashMessages.success) { %>
+                <div class="alert alert-success" role="alert">
+                  <%= flashMessages.success  %> 
+                </div>
+              <% } else if(flashMessages.error) { %> 
+                <div class="alert alert-danger" role="alert">
+                  <%= flashMessages.error  %> 
+                </div>
+              <% } %> 
+            </div>
+          <% } %> 
        </div>
     </div>
   </div>

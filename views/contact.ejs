@@ -9,6 +9,19 @@
                <div class="col-sm-12">
                   <h1 class="contact_taital contact_heading">Get In Touch</h1>
                </div>
+               <% if (flashMessages) { %> 
+                  <div class="col-sm-12 text-center">
+                     <% if (flashMessages.success) { %>
+                        <div class="alert alert-success" role="alert">
+                           <%= flashMessages.success  %> 
+                         </div>
+                     <% } else if (flashMessages.error) { %> 
+                        <div class="alert alert-danger" role="alert">
+                           <%= flashMessages.error  %> 
+                         </div>
+                     <% } %>  
+                  </div>
+               <% } %> 
             </div>
             <div class="contact_section_2">
                <div class="row">

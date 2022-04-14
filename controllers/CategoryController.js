@@ -9,12 +9,11 @@ exports.createCategory = async (req, res) => {
       name: req.body.name,
       image: req.file.filename
     });
+    await req.flash('success', `${category.name} has been added successfully`);
     res.status(201).redirect('/user/dashboard');
   } catch(error) {
-    res.status(400).json({
-      status: 'Something went wrong',
-      error
-    });
+    req.flash('error', 'Something went wrong');
+    res.status(400).redirect('/user/dashboard');
   }
 }
 
@@ -25,11 +24,10 @@ exports.deleteCategory = async (req, res) => {
 
     let deletedImage = __dirname + '/../uploads/category/' +category.image;
     fs.unlinkSync(deletedImage);
+    await req.flash('success', `${category.name} has been deleted successfully`)
     res.status(200).redirect('/user/dashboard');
   } catch(error) {
-    res.status(400).json({
-      status: 'Something went wrong',
-      error
-    })
+    req.flash('error', 'Something went wrong!');
+    res.status(400).redirect('/user/dashboard');
   }
 }
