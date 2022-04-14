@@ -26,7 +26,25 @@
                   <% } %> 
                </div>
             </div>
-            <div class="readmore_bt"><a href="#">See More</a></div>
+            <div class="readmore_bt">
+               <nav aria-label="...">
+                  <% if(pages>1) { %> 
+                  <ul class="pagination pagination-lg">
+                     <% for (let i=1; i<=pages;i++) { %>
+                        <% if (current==i) { %> 
+                           <li class="page-item disabled">
+                              <a class="page-link" href="/furniture/<%= category.slug %>?page=<%= i %>" tabindex="-1"><%= i %></a>
+                            </li>
+                        <% } else if (i<pages) { %>
+                           <li class="page-item"><a class="page-link" href="/furniture/<%= category.slug  %>?page=<%= i %>"><%= i %></a></li>
+                        <% } else { %>
+                           <li class="page-item"><a class="page-link" href="/furniture/<%= category.slug  %>?page=<%= i %>"><%= i %></a></li>                        
+                        <% } %> 
+                     <% } %> 
+                  </ul>
+                 <% } %> 
+                </nav>
+            </div>
          </div>
       </div>
       <!-- blog section end -->

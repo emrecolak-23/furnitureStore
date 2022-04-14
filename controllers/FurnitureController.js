@@ -58,11 +58,21 @@ exports.getFurnitureByCategory = async (req, res) => {
     if (categorySlug) {
       filter = { category: category._id };
     }
-    const furnitures = await Furniture.find(filter);
+
+    // Pagination
+    let page = req.query.page || 1;
+    let furniturePerPage = 6;
+    let totalFurniture = await Furniture.find(filter).countDocuments();
+
+    const furnitures = await Furniture.find(filter)
+                                      .limit(furniturePerPage)
+                                      .skip((page-1)*furniturePerPage)
     res.status(200).render('productByCategory', {
       page_name: 'furnitures',
       furnitures,
       category,
+      current: page,
+      pages: Math.ceil(totalFurniture/furniturePerPage)
     });
   } catch (error) {
     res.status(400).json({
