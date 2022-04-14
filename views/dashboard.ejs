@@ -227,9 +227,9 @@
           type="button"
           class="btn btn-success mb-3"
           data-toggle="modal"
-          data-target="#addFurnitureAdmin"
+          data-target="#addCategoryAdmin"
         >
-          Create New Furniture
+          Create New Category
         </button>
       </div>
     </div>
@@ -258,15 +258,40 @@
         </table>
       </div>
     </div>
+    <div class="row mt-5">
+      <div class="col-md-12 text-center">
+        <h1>Categories</h1>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#ID</th>
+              <th scope="col">Name</th>
+              <th scope="col">Add</th>
+              <th scope="col">Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for (let i = 0; i<categories.length;i++) { %> 
+            <tr>
+              <th scope="row"><%= categories[i]._id  %></th>
+              <td><%= categories[i].name  %></td>
+              <td><a data-toggle="modal" data-target="#addCategoryAdmin" class="btn btn-outline-warning btn-sm text-uppercase">Add</a></td>
+              <td><a onclick="return confirm('Are you sure?')" href="/category/<%= categories[i]._id %>?_method=DELETE" class="btn btn-outline-danger btn-sm text-uppercase">Delete</a></td>
+            </tr>
+            <% } %> 
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
   
 
   
 
-  <!-- Add Furniture Modal Start -->
+  <!-- Add Category Modal Start -->
 <div
 class="modal fade"
-id="addFurnitureAdmin"
+id="addCategoryAdmin"
 tabindex="-1"
 role="dialog"
 aria-labelledby="myModalLabel"
@@ -282,7 +307,7 @@ aria-labelledby="myModalLabel"
         <div class="tab-pane active" id="Login">
           <form
             method="post"
-            action="/furniture"
+            action="/category"
             class="tm-contact-form"
             enctype="multipart/form-data"
           >
@@ -290,43 +315,13 @@ aria-labelledby="myModalLabel"
               <input
                 type="text"
                 name="name"
-                class="mail_text"
-                placeholder="Furniture Name"
-                required
-              />
-            </div>
-            <div class="form-group">
-              <select name="category" class="mail_text">
-                <option value="" disabled selected>Select category</option>    
-                <% for(let i = 0; i<categories.length; i++) { %> 
-                <option value="<%= categories[i]._id %>"><%= categories[i].name %> </option>
-                <% } %> 
-                </select>
-            </div>
-            <div class="form-group mb-3">
-              <input
-                type="number"
-                name="price"
-                class="mail_text"
-                placeholder="Furniture Price"
-                step="0.01"
+                class="mail_text mb-3"
+                placeholder="Category Name"
                 required
               />
             </div>
             <div class="form-group">
               <input type="hidden" name="role" class="form-control"  value="<%= user.role %>">
-            </div>
-            <div class="form-group">
-              <input type="hidden" name="user" class="form-control">
-            </div>
-            <div class="form-group mb-5">
-              <textarea
-                rows="8"
-                name="description"
-                class="mail_text rounded-0"
-                placeholder="Furniture Description"
-                required
-              ></textarea>
             </div>
             <div class="form-group mb-3">
               <input

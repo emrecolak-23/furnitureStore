@@ -16,6 +16,11 @@
          <div class="container mb-2">
             <div class="blog_section_2 layout_padding">
                <div class="row">
+                  <% if (furnitures.length ==0) { %>
+                     <div class="col-md-12 text-center">
+                        <h1>Not any furniture in this category</h1>
+                     </div>
+                  <% } %> 
                   <% for (let i = 0; i<furnitures.length;i++) { %>
                      <div class="col-lg-4 col-md-4 col-sm-12">
                         <div class="blog_box">

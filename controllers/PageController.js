@@ -9,7 +9,7 @@ exports.getHomePage = async (req, res) => {
     let furnituresPerPage = 3;
     let totalFurnitures = await Furniture.find().countDocuments();
 
-    const categories = await Category.find().limit(3);
+    const categories = await Category.find().limit(3)
     const furnitures = await Furniture.find().sort('-createdAt')
                               .skip((page-1)*furnituresPerPage)
                               .limit(furnituresPerPage);
@@ -30,7 +30,7 @@ exports.getHomePage = async (req, res) => {
 
 exports.getFurniturePage = async (req, res) => {
   try {
-    const categories = await Category.find().limit(3);
+    const categories = await Category.find()
     res.status(200).render('furnitures', {
       page_name: 'furnitures',
       categories,

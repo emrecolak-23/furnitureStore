@@ -8,22 +8,24 @@
             <div class="row">
                <div class="col-sm-12">
                   <h1 class="furnitures_taital">Our Furnitures Work</h1>
-                  <p class="furnitures_text">reader will be distracted by the readable content of a page when looking at its layout. </p>
+                  <p class="furnitures_text">Choose a category for your favourite furniture</p>
                </div>
             </div>
             <div class="furnitures_section_2">
                <div class="row">
-                  <% if (categories) { %> 
-                     <% for (let i =0; i<categories.length;i++) { %> 
-                  <div class="col-md-4">
-                     <div class="hover01 column">
-                        <figure><img src="/category/<%= categories[i].image  %>"></figure>
+                  <div class="owl-carousel owl-theme gift_owl_carousel">
+                     <% if (categories) { %> 
+                        <% for (let i =0; i<categories.length;i++) { %> 
+                     <div class="item">
+                        <div class="hover01 column">
+                           <figure><img src="/category/<%= categories[i].image  %>"></figure>
+                        </div>
+                        <h3 class="introduction_text"><%= categories[i].name  %></h3>
+                        <div class="seemore_bt"><a href="/furniture/<%= categories[i].slug  %>">See More</a></div>
                      </div>
-                     <h3 class="introduction_text"><%= categories[i].name  %></h3>
-                     <div class="seemore_bt"><a href="/furniture/<%= categories[i].slug  %>">See More</a></div>
-                  </div>
+                        <% } %> 
                      <% } %> 
-                  <% } %> 
+                  </div>
                </div>
             </div>
          </div>

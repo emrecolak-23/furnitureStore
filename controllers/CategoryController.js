@@ -7,10 +7,7 @@ exports.createCategory = async (req, res) => {
       name: req.body.name,
       image: req.file.filename
     });
-    res.status(201).json({
-      status: 'Category created successfully',
-      category
-    })
+    res.status(201).redirect('/user/dashboard');
   } catch(error) {
     res.status(400).json({
       status: 'Something went wrong',

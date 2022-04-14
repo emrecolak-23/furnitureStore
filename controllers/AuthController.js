@@ -74,6 +74,7 @@ exports.getDashboardPage = async (req, res) => {
 exports.deleteUser = async (req, res) => {
   try {
     const user = await User.findByIdAndRemove(req.params.id);
+    await Furniture.deleteMany({user: req.params.id});
     res.status(200).redirect('/user/dashboard')
   } catch(error) {
     res.status(400).json({
