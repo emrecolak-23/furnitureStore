@@ -22,4 +22,6 @@ let upload = multer({
 
 router.route('/').post(upload, CategoryController.createCategory);
 
+router.route('/:id').delete(CategoryController.deleteCategory);
+
 module.exports = router
