@@ -109,7 +109,7 @@ exports.deleteFurniture = async (req, res) => {
     let imageFile = __dirname + '/../uploads/' + furniture.image;
 
     fs.unlinkSync(imageFile);
-    req.flash('success', `${furniture.name} has been deleted successfully`);
+    await req.flash('success', `${furniture.name} has been deleted successfully`);
     res.status(200).redirect('/user/dashboard');
   } catch (error) {
     req.flash('error', 'Something went wrong');

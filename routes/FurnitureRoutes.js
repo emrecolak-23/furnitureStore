@@ -2,6 +2,7 @@
 const express = require('express');
 const multer = require('multer');
 
+
 // Import Controller
 const FurnitureController = require('../controllers/FurnitureController');
 

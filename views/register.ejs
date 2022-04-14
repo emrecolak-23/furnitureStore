@@ -9,6 +9,15 @@
         <div class="col-sm-12">
            <h1 class="contact_taital contact_heading">Register</h1>
         </div>
+        <% if(flashMessages) { %>
+            <div class="col-sm-12 text-center">
+               <% if(flashMessages.error) { %>
+                  <div class="alert alert-danger" role="alert">
+                     <%= flashMessages.error  %> 
+                   </div>
+               <% } %> 
+            </div>
+        <% } %> 
      </div>
      <div class="contact_section_2">
         <div class="row">
